@@ -1,0 +1,28 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio / VSCode
+.vscode/
+*.user
+*.suo
+*.userprefs
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+packages/
+
+# Debug logs
+debug.log
+
+# Système
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Publication locale
+publish/

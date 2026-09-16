@@ -1,0 +1,353 @@
+﻿<Window x:Class="Olympia.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Olympia"
+        Height="700" Width="1000"
+        MinHeight="500" MinWidth="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#0B3D91"
+        Icon="assets/logo.ico">
+
+    <Window.Resources>
+        <FontFamily x:Key="GreceFont">pack://application:,,,/assets/fonts/#Cinzel</FontFamily>
+        <FontFamily x:Key="GreceFontBold">pack://application:,,,/assets/fonts/#Cinzel Bold</FontFamily>
+        <SolidColorBrush x:Key="OrAntique" Color="#D4AF37"/>
+        <SolidColorBrush x:Key="Marbre" Color="#F4F1E8"/>
+        <SolidColorBrush x:Key="TerreCuite" Color="#B8632A"/>
+        <SolidColorBrush x:Key="BleuEgee" Color="#0B3D91"/>
+
+        <!-- Bouton de réponse -->
+        <Style x:Key="AnswerButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource GreceFont}"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Foreground" Value="{StaticResource Marbre}"/>
+            <Setter Property="Padding" Value="18,14"/>
+            <Setter Property="Margin" Value="0,7"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="#CC1A1A3A" CornerRadius="6" BorderBrush="{StaticResource OrAntique}" BorderThickness="1.5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#CC2A2A5A"/>
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="2.5"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Bouton principal -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource GreceFontBold}"/>
+            <Setter Property="Foreground" Value="#1E1E2E"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="40,18"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{StaticResource OrAntique}" CornerRadius="8" BorderBrush="#8B6914" BorderThickness="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#E5C55A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Bouton de difficulté -->
+        <Style x:Key="DifficultyButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource GreceFont}"/>
+            <Setter Property="Foreground" Value="{StaticResource Marbre}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="#CC1A1A3A" CornerRadius="10" BorderBrush="{StaticResource OrAntique}" BorderThickness="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#CC2A2A5A"/>
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Bouton icône -->
+        <Style x:Key="IconButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Margin" Value="6,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="#80000000" CornerRadius="24" BorderBrush="{StaticResource OrAntique}" BorderThickness="1" Padding="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#CC1A1A3A"/>
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Bouton "Cliquer pour commencer" -->
+        <Style x:Key="StartButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource Marbre}"/>
+            <Setter Property="FontFamily" Value="{StaticResource GreceFontBold}"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="30,14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent" Padding="{TemplateBinding Padding}">
+                            <StackPanel>
+                                <Border Height="2" Background="{StaticResource OrAntique}" Margin="0,0,0,10"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <Border Height="2" Background="{StaticResource OrAntique}"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource OrAntique}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Fond -->
+        <Image x:Name="BackgroundImage" Source="assets/fond.png" Stretch="UniformToFill"/>
+        <Border Background="#50000000"/>
+
+        <!-- Bouton audio (fixe, hors Viewbox) -->
+        <Button x:Name="BtnAudio"
+                Style="{StaticResource IconButtonStyle}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="24,18,0,0"
+                Click="Audio_Click"
+                ToolTip="Couper / Activer le son">
+            <Image x:Name="AudioIcon" Source="assets/volume.png" Width="30" Height="30"/>
+        </Button>
+
+        <!-- Barre du haut (fixe, hors Viewbox) -->
+        <StackPanel x:Name="TopBar"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,18,24,0"
+                    Visibility="Collapsed">
+            <Button x:Name="BtnRetour"
+                    Style="{StaticResource IconButtonStyle}"
+                    Click="Retour_Click"
+                    ToolTip="Retour">
+                <Image Source="assets/retour.png" Width="30" Height="30"/>
+            </Button>
+            <Button x:Name="BtnMenu"
+                    Style="{StaticResource IconButtonStyle}"
+                    Click="Menu_Click"
+                    ToolTip="Menu principal">
+                <Image Source="assets/menu.png" Width="30" Height="30"/>
+            </Button>
+        </StackPanel>
+
+        <!-- Menu principal -->
+        <Viewbox x:Name="MenuPanel" Stretch="Uniform" StretchDirection="Both">
+            <StackPanel Width="900" Height="600" VerticalAlignment="Center">
+                <Image Source="assets/logomenu.png" Width="160" Height="160" HorizontalAlignment="Center" Margin="0,80,0,20"/>
+                <TextBlock Text="EXPLORER LE MONDE DE L'OLYMPE"
+                           FontFamily="{StaticResource GreceFontBold}"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="#FFFFFF"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,60">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.9"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <Button Content="CLIQUER POUR COMMENCER"
+                        Style="{StaticResource StartButtonStyle}"
+                        HorizontalAlignment="Center"
+                        Click="Start_Click"/>
+            </StackPanel>
+        </Viewbox>
+
+        <!-- Difficulté -->
+        <Viewbox x:Name="DifficultyPanel" Stretch="Uniform" StretchDirection="Both" Visibility="Collapsed">
+            <StackPanel Width="900" Height="600" VerticalAlignment="Center">
+                <TextBlock Text="CHOISIS TON DESTIN"
+                           FontFamily="{StaticResource GreceFontBold}"
+                           FontSize="40"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource OrAntique}"
+                           HorizontalAlignment="Center"
+                           Margin="0,140,0,60">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.9"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource DifficultyButtonStyle}" Click="Difficulty_Click" Tag="Mortals">
+                        <StackPanel>
+                            <TextBlock Text="MORTEL" FontFamily="{StaticResource GreceFontBold}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource Marbre}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Questions faciles" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource DifficultyButtonStyle}" Click="Difficulty_Click" Tag="Demi-Dieu">
+                        <StackPanel>
+                            <TextBlock Text="DEMI-DIEU" FontFamily="{StaticResource GreceFontBold}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource OrAntique}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Questions variées" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource DifficultyButtonStyle}" Click="Difficulty_Click" Tag="Divin">
+                        <StackPanel>
+                            <TextBlock Text="DIVIN" FontFamily="{StaticResource GreceFontBold}" FontSize="22" FontWeight="Bold" Foreground="#E5C55A" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Questions difficiles" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+
+        <!-- Jeu -->
+        <Viewbox x:Name="GamePanel" Stretch="Uniform" StretchDirection="Both" Visibility="Collapsed">
+            <Grid Width="900" Height="600">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,15">
+                    <Image x:Name="Life1" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life2" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life3" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life4" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life5" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life6" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life7" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life8" Width="40" Height="40" Margin="4"/>
+                    <Image x:Name="Life9" Width="40" Height="40" Margin="4"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1"
+                           x:Name="LevelText"
+                           FontFamily="{StaticResource GreceFont}"
+                           FontSize="16"
+                           Foreground="{StaticResource OrAntique}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <TextBlock Grid.Row="2"
+                           x:Name="QuestionText"
+                           FontFamily="{StaticResource GreceFont}"
+                           FontSize="24"
+                           Foreground="{StaticResource Marbre}"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="60,20">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="1" Opacity="0.8"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <StackPanel Grid.Row="3" Orientation="Vertical" Margin="80,10,80,10">
+                    <Button x:Name="Answer1" Content="" Click="Answer_Click" Tag="0" Style="{StaticResource AnswerButtonStyle}"/>
+                    <Button x:Name="Answer2" Content="" Click="Answer_Click" Tag="1" Style="{StaticResource AnswerButtonStyle}"/>
+                    <Button x:Name="Answer3" Content="" Click="Answer_Click" Tag="2" Style="{StaticResource AnswerButtonStyle}"/>
+                    <Button x:Name="Answer4" Content="" Click="Answer_Click" Tag="3" Style="{StaticResource AnswerButtonStyle}"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="4"
+                           x:Name="FeedbackText"
+                           FontFamily="{StaticResource GreceFontBold}"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,15,0,30"/>
+            </Grid>
+        </Viewbox>
+
+        <!-- Fin -->
+        <Viewbox x:Name="EndPanel" Stretch="Uniform" StretchDirection="Both" Visibility="Collapsed">
+            <Grid Width="900" Height="600" Background="#E60D0A06">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="EndTitle"
+                               Text="VICTOIRE"
+                               FontFamily="{StaticResource GreceFontBold}"
+                               FontSize="60"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource OrAntique}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,30">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="12" ShadowDepth="3" Opacity="0.9"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <TextBlock x:Name="EndMessage"
+                               Text=""
+                               FontFamily="{StaticResource GreceFont}"
+                               FontSize="24"
+                               Foreground="{StaticResource Marbre}"
+                               TextAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,50"/>
+
+                    <Button Content="REJOUER"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            HorizontalAlignment="Center"
+                            Click="Rejouer_Click"/>
+
+                    <Button Content="RETOUR AU MENU"
+                            Style="{StaticResource StartButtonStyle}"
+                            HorizontalAlignment="Center"
+                            Margin="0,20,0,0"
+                            Click="MenuFin_Click"/>
+                </StackPanel>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>
