@@ -16,7 +16,6 @@
         <SolidColorBrush x:Key="TerreCuite" Color="#B8632A"/>
         <SolidColorBrush x:Key="BleuEgee" Color="#0B3D91"/>
 
-        <!-- Bouton de réponse -->
         <Style x:Key="AnswerButtonStyle" TargetType="Button">
             <Setter Property="FontFamily" Value="{StaticResource GreceFont}"/>
             <Setter Property="FontSize" Value="17"/>
@@ -44,7 +43,6 @@
             </Setter>
         </Style>
 
-        <!-- Bouton principal -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
             <Setter Property="FontFamily" Value="{StaticResource GreceFontBold}"/>
             <Setter Property="Foreground" Value="#1E1E2E"/>
@@ -68,7 +66,6 @@
             </Setter>
         </Style>
 
-        <!-- Bouton de difficulté -->
         <Style x:Key="DifficultyButtonStyle" TargetType="Button">
             <Setter Property="FontFamily" Value="{StaticResource GreceFont}"/>
             <Setter Property="Foreground" Value="{StaticResource Marbre}"/>
@@ -95,7 +92,32 @@
             </Setter>
         </Style>
 
-        <!-- Bouton icône -->
+        <Style x:Key="ChapterButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource GreceFont}"/>
+            <Setter Property="Foreground" Value="{StaticResource Marbre}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="#CC1A1A3A" CornerRadius="10" BorderBrush="{StaticResource OrAntique}" BorderThickness="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#CC2A2A5A"/>
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="IconButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -120,7 +142,6 @@
             </Setter>
         </Style>
 
-        <!-- Bouton "Cliquer pour commencer" -->
         <Style x:Key="StartButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource Marbre}"/>
@@ -152,11 +173,9 @@
     </Window.Resources>
 
     <Grid>
-        <!-- Fond -->
         <Image x:Name="BackgroundImage" Source="assets/fond.png" Stretch="UniformToFill"/>
         <Border Background="#50000000"/>
 
-        <!-- Bouton audio (fixe, hors Viewbox) -->
         <Button x:Name="BtnAudio"
                 Style="{StaticResource IconButtonStyle}"
                 HorizontalAlignment="Left"
@@ -167,7 +186,6 @@
             <Image x:Name="AudioIcon" Source="assets/volume.png" Width="30" Height="30"/>
         </Button>
 
-        <!-- Barre du haut (fixe, hors Viewbox) -->
         <StackPanel x:Name="TopBar"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
@@ -188,7 +206,6 @@
             </Button>
         </StackPanel>
 
-        <!-- Menu principal -->
         <Viewbox x:Name="MenuPanel" Stretch="Uniform" StretchDirection="Both">
             <StackPanel Width="900" Height="600" VerticalAlignment="Center">
                 <Image Source="assets/logomenu.png" Width="160" Height="160" HorizontalAlignment="Center" Margin="0,80,0,20"/>
@@ -210,7 +227,6 @@
             </StackPanel>
         </Viewbox>
 
-        <!-- Difficulté -->
         <Viewbox x:Name="DifficultyPanel" Stretch="Uniform" StretchDirection="Both" Visibility="Collapsed">
             <StackPanel Width="900" Height="600" VerticalAlignment="Center">
                 <TextBlock Text="CHOISIS TON DESTIN"
@@ -229,26 +245,69 @@
                     <Button Style="{StaticResource DifficultyButtonStyle}" Click="Difficulty_Click" Tag="Mortals">
                         <StackPanel>
                             <TextBlock Text="MORTEL" FontFamily="{StaticResource GreceFontBold}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource Marbre}" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Questions faciles" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <TextBlock Text="4 chapitres" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource DifficultyButtonStyle}" Click="Difficulty_Click" Tag="Demi-Dieu">
                         <StackPanel>
                             <TextBlock Text="DEMI-DIEU" FontFamily="{StaticResource GreceFontBold}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource OrAntique}" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Questions variées" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <TextBlock Text="4 chapitres" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource DifficultyButtonStyle}" Click="Difficulty_Click" Tag="Divin">
                         <StackPanel>
                             <TextBlock Text="DIVIN" FontFamily="{StaticResource GreceFontBold}" FontSize="22" FontWeight="Bold" Foreground="#E5C55A" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Questions difficiles" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <TextBlock Text="4 chapitres" FontFamily="{StaticResource GreceFont}" FontSize="13" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
             </StackPanel>
         </Viewbox>
 
-        <!-- Jeu -->
+        <Viewbox x:Name="ChapterPanel" Stretch="Uniform" StretchDirection="Both" Visibility="Collapsed">
+            <StackPanel Width="900" Height="600" VerticalAlignment="Center">
+                <TextBlock x:Name="ChapterTitle"
+                           Text="CHAPITRES"
+                           FontFamily="{StaticResource GreceFontBold}"
+                           FontSize="40"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource OrAntique}"
+                           HorizontalAlignment="Center"
+                           Margin="0,100,0,40">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.9"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource ChapterButtonStyle}" Click="Chapter_Click" Tag="1">
+                        <StackPanel>
+                            <TextBlock Text="CHAPITRE 1" FontFamily="{StaticResource GreceFontBold}" FontSize="18" FontWeight="Bold" Foreground="{StaticResource Marbre}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Niveaux 1-2" FontFamily="{StaticResource GreceFont}" FontSize="12" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource ChapterButtonStyle}" Click="Chapter_Click" Tag="2">
+                        <StackPanel>
+                            <TextBlock Text="CHAPITRE 2" FontFamily="{StaticResource GreceFontBold}" FontSize="18" FontWeight="Bold" Foreground="{StaticResource Marbre}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Niveaux 3-4" FontFamily="{StaticResource GreceFont}" FontSize="12" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource ChapterButtonStyle}" Click="Chapter_Click" Tag="3">
+                        <StackPanel>
+                            <TextBlock Text="CHAPITRE 3" FontFamily="{StaticResource GreceFontBold}" FontSize="18" FontWeight="Bold" Foreground="{StaticResource Marbre}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Niveaux 5-6" FontFamily="{StaticResource GreceFont}" FontSize="12" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource ChapterButtonStyle}" Click="Chapter_Click" Tag="4">
+                        <StackPanel>
+                            <TextBlock Text="CHAPITRE 4" FontFamily="{StaticResource GreceFontBold}" FontSize="18" FontWeight="Bold" Foreground="{StaticResource Marbre}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Niveaux 7-8" FontFamily="{StaticResource GreceFont}" FontSize="12" Foreground="#BBBBBB" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+        </Viewbox>
+
         <Viewbox x:Name="GamePanel" Stretch="Uniform" StretchDirection="Both" Visibility="Collapsed">
             <Grid Width="900" Height="600">
                 <Grid.RowDefinitions>
@@ -310,7 +369,6 @@
             </Grid>
         </Viewbox>
 
-        <!-- Fin -->
         <Viewbox x:Name="EndPanel" Stretch="Uniform" StretchDirection="Both" Visibility="Collapsed">
             <Grid Width="900" Height="600" Background="#E60D0A06">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

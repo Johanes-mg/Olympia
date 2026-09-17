@@ -1,6 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
+﻿<PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
@@ -11,29 +9,7 @@
     <PublishSingleFile>true</PublishSingleFile>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Resource Include="assets\logo.ico" />
-    <Resource Include="assets\logomenu.png" />
-    <Resource Include="assets\menu.png" />
-    <Resource Include="assets\retour.png" />
-    <Resource Include="assets\catfull.png" />
-    <Resource Include="assets\catempty.png" />
-    <Resource Include="assets\fond.png" />
-    <Resource Include="assets\fondblur.png" />
-    <Resource Include="assets\volume.png" />
-    <Resource Include="assets\muet.png" />
-    <Resource Include="assets\pause.png" />
-    <Resource Include="assets\fonts\Cinzel-Regular.ttf" />
-    <Resource Include="assets\fonts\Cinzel-Bold.ttf" />
-    <EmbeddedResource Include="assets\greek_themesong.mp3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NAudio" Version="2.2.1" />
-    <PackageReference Include="NLayer" Version="3.0.0" />
-    <PackageReference Include="NLayer.NAudioSupport" Version="2.0.1" />
-  </ItemGroup>
-
-</Project>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
+</PropertyGroup>
